@@ -15,7 +15,8 @@
 angular.module( 'ngBoilerplate.home', [
   'ui.state',
   'titleService',
-  'plusOne'
+  'plusOne',
+  'moviesServices'
 ])
 
 /**
@@ -38,7 +39,12 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, titleService ) {
+.controller( 'HomeCtrl', function HomeController( $scope, titleService, Movies ) {
+  $scope.movies = Movies.query({}, function(movie) {
+    console.log(movie);
+  });
+
+  console.log('movies -> ', $scope.movies);
   titleService.setTitle( 'Home' );
 })
 
